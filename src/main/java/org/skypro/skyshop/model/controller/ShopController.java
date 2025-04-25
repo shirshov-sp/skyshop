@@ -7,6 +7,7 @@ import org.skypro.skyshop.model.search.SearchResult;
 import org.skypro.skyshop.model.service.BasketService;
 import org.skypro.skyshop.model.service.SearchService;
 import org.skypro.skyshop.model.service.StorageService;
+import org.skypro.skyshop.model.service.exceptions.NoSuchProductException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,12 +45,8 @@ public class ShopController {
 
     @GetMapping("/basket/{id}")
     public String addProduct(@PathVariable("id") UUID id) {
-        try {
-            basketService.addProductInProductBasket(id);
-            return "*Продукт успешно добавлен*";
-        } catch (IllegalArgumentException e) {
-            return String.valueOf(e);
-        }
+        basketService.addProductInProductBasket(id);
+        return "*Продукт успешно добавлен*";
     }
 
     @GetMapping("/basket")

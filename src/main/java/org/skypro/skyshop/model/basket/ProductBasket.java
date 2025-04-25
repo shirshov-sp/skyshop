@@ -16,7 +16,6 @@ public class ProductBasket {
 
     public void addProduct(UUID id) {
         products.merge(id, 1, Integer::sum);
-        System.out.println("Продукт с id" + id + "успешно добавлен в корзину");
     }
 
     public Map<UUID, Integer> getProductsList() {
